@@ -2,7 +2,7 @@ package com.softserve.academy.entity;
 
 public abstract class BaseEntity {
 
-	public Long id;
+	private Long id;
 
 	public  Long getId() {
 		return id;

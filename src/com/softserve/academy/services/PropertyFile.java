@@ -20,11 +20,6 @@ public class PropertyFile {
 	}
 	
 	public static String get(String key) {
-	/*	String result = "";
-		if(property.containsKey(key)) {
-			result = property.getProperty(key);
-		}
-		return result;*/
 		return property.containsKey(key) ? property.getProperty(key) : "";
 	}
 }
