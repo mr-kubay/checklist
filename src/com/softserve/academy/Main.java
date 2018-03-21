@@ -9,10 +9,12 @@ import com.softserve.academy.dao.UserDao;
 import com.softserve.academy.dto.ItemDTO;
 import com.softserve.academy.dto.LoginDTO;
 import com.softserve.academy.dto.UserDTO;
+import com.softserve.academy.dto.UserItemsDto;
 import com.softserve.academy.entity.ItemEntity;
 import com.softserve.academy.entity.UserEntity;
 import com.softserve.academy.services.ItemService;
 import com.softserve.academy.services.LoginService;
+import com.softserve.academy.services.UserItemsService;
 import com.softserve.academy.services.UserService;
 
 
@@ -31,11 +33,11 @@ public class Main {
 		System.out.println(i.delete(ientity));*/
 		ItemDTO itemDTO = itemService.getItemDto((long)3);
 		UserDTO userDTO = userService.getUserDTO("login1");
+		
 		System.out.println(userDTO);
-		
-		userDTO.setEmail("asdgbg");
-		
-		userService.setUserDTO(userDTO);
+		LoginDTO login = new LoginDTO("login1", "asd");
+		UserItemsService userItemsService = new UserItemsService(userDao, itemDao);
+		userItemsService.getUserItems(login);
 		
 
 		

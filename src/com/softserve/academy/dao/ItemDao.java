@@ -50,7 +50,7 @@ public class ItemDao extends ADaoCRUD<ItemEntity> {
 			ps = getPreparedStatement(getSelectByFieldNameQuery(fieldName));
 			ps.setString(1, text);
 			rs = ps.executeQuery();
-			itemEntityList = getItemEntity(rs);
+			itemEntityList.addAll(getItemEntity(rs));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -194,10 +194,11 @@ public class ItemDao extends ADaoCRUD<ItemEntity> {
 
 	public List<ItemEntity> getItemEntity(ResultSet rs) {
 		List<ItemEntity> itemEntityList = new ArrayList<>();
-		ItemEntity itemEntity = new ItemEntity();
+		
 		try {
 			int columnCount = rs.getMetaData().getColumnCount();
 			while (rs.next()) {
+				ItemEntity itemEntity = new ItemEntity();
 				for (int i = 1; i <= columnCount; i++) {
 					String columnName = rs.getMetaData().getColumnName(i);
 					if (columnName.equalsIgnoreCase("id")) {
